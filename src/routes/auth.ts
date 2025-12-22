@@ -8,6 +8,7 @@ const auth = new Hono();
 auth.post("/register", async (c) => {
   const { email, password } = await c.req.json();
 
+
   const user = await createUser(email, password);
   if (!user) {
     return c.json({ message: "User already exists" }, 400);
