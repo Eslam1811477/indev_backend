@@ -6,6 +6,7 @@ import authRoutes from "./routes/auth";
 import protectedRoutes from "./routes/protected";
 import { connectDB } from "./config/db";
 import "dotenv/config";
+import templates from "./routes/template";
 
 const app = new Hono();
 
@@ -23,6 +24,8 @@ app.use(
 
 app.route("/auth", authRoutes);
 app.route("/api", protectedRoutes);
+app.route("/templates", templates);
+
 
 serve({
   fetch: app.fetch,
