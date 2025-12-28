@@ -13,13 +13,17 @@ const templateSchema = new Schema(
       required: true,
     },
     plugins: {
-      type: [String], // أفضل من Array
+      type: [String],
       default: [],
     },
     active: {
       type: Boolean,
       required: true,
       default: true,
+    },
+    image: {
+      type: String,
+      default: "",
     },
   },
   { timestamps: true }

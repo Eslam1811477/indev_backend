@@ -3,8 +3,10 @@ import { verifyToken } from "../config/jwt";
 import type { JwtPayload } from "../config/jwt";
 
 export const authMiddleware = async (c: Context, next: Next) => {
-  const authHeader = c.req.header("authorization");
-
+  if (c.req.method === "OPTIONS") {
+    return next();
+  }
+  const authHeader = c.req.header("Authorization");
   if (!authHeader) {
     return c.json({ message: "Unauthorized" }, 401);
   }
@@ -22,6 +24,7 @@ export const authMiddleware = async (c: Context, next: Next) => {
 
     await next();
   } catch (error) {
+    console.log(error)
     return c.json({ message: "Invalid or expired token" }, 401);
   }
 };
