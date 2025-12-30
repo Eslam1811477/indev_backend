@@ -9,6 +9,7 @@ import authRoutes from "./routes/auth";
 import protectedRoutes from "./routes/protected";
 import templates from "./routes/template";
 import { connectDB } from "./config/db";
+import envato from "./routes/envato";
 
 const app = new Hono();
 
@@ -47,7 +48,7 @@ app.use(
 
 app.get("/storage/*", async (c) => {
   const filePath = c.req.path.replace("/storage/", "");
-  const fullPath = path.join(process.cwd(), "src", "storage", filePath); // <- هنا صححت المسار
+  const fullPath = path.join(process.cwd(), "src", "storage", filePath);
 
   if (!fs.existsSync(fullPath)) {
     return c.notFound();
@@ -70,6 +71,8 @@ app.get("/storage/*", async (c) => {
 app.route("/auth", authRoutes);
 app.route("/api", protectedRoutes);
 app.route("/templates", templates);
+app.route("/envato", envato);
+
 
 /* =========================
     Start Server
