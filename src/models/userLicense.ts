@@ -29,4 +29,4 @@ const UserLicenseSchema: Schema = new Schema(
   { timestamps: true }
 );
 
-export default mongoose.model<IUserLicense>("UserLicense", UserLicenseSchema);
+export default mongoose.model<IUserLicense>("ThemeLicense", UserLicenseSchema);
